@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    
   end
 
   def show
     @user = User.find(params[:id])
     @books = @user.books  #左を右に代入
+  end
+  
+    
   end
 
   def edit
