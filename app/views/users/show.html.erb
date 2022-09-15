@@ -1,7 +1,22 @@
-<div>
-<%= render 'userinfo', user: @user%>
+<%= flash[:success] %>
 
-  <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
+<div>
+  <h2>User info</h2>
+  <%= image_tag @user.get_profile_image(100, 100) %>
+  <table>
+    <tr>
+      <th>name</th>
+      <th><%= @user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= @user.introduction %></th>
+    </tr>
+  </table>
+
+  <div>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user.id) %></p>
+  </div>
 
   <h2>New book</h2>
     <%= form_with model: @booka do |f| %>
