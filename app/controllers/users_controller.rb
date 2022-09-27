@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books  #左を右に代入
+    @books = @user.books  #右を左に代入
     @booka = Book.new
   end
 
@@ -28,16 +28,6 @@ class UsersController < ApplicationController
      end
   end
 
-  def follows
-    @user = User.find(params[:id])
-    @users = @user.followings
-  end
-
-  def followers
-    @user = User.find(params[:id])
-    @users = @user.followers
-  end
-
   private
 
   def user_params
@@ -46,6 +36,8 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find(params[:id])
-    redirect_to user_path(current_user) unless @user == current_user
+    unless @user == current_user
+      redirect_to user_path(current_user) 
+    end
   end
 end
